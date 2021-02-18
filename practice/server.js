@@ -1,15 +1,16 @@
-var http = require("http");
+var http = require('http');
 
-function start(){
-    function onRequest(request, response){
-        console.log("Request Receivced.");
-        response.writeHead(200, {"Content-Type": "text/plain"});
-        response.write("Hello World");
-        response.end();
-    }
+var server = http.createServer();
 
-    http.createServer(onRequest).listen(8888);
-    console.log("Server has started");
-}
+server.addListener('request', function(request, response){
+    console.log('requested...');
+    response.writeHead(200, {'Content-Type' : 'text/plain'});
+    response.write('Hello Jihwan');
+    response.end();
+});
 
-exports.start = start;
+server.addListener('connection', function(socket){
+    console.log('connected...');
+});
+
+server.listen(8888);
