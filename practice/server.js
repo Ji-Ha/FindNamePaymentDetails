@@ -1,16 +1,21 @@
 var http = require('http');
+var url = require('url');
 
-var server = http.createServer();
+function start(route, handle) {
+    function onRequest(request, response){
+        var pathname = url.parse(request.url).pathname;
+        console.log('request for ' + pathname + ' receiced.');
 
-server.addListener('request', function(request, response){
-    console.log('requested...');
-    response.writeHead(200, {'Content-Type' : 'text/plain'});
-    response.write('Hello Jihwan');
-    response.end();
-});
+        route(handle, pathname);
 
-server.addListener('connection', function(socket){
-    console.log('connected...');
-});
+        response.writeHead(200, {'Content-Type' : 'text/plain'});
+        response.write('Hello World');
+        response.end();
+    }
 
-server.listen(8888);
+    http.createServer(onRequest).listen(8888);
+
+    console.log('server has started.');
+}
+
+exports.start = start;
