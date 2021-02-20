@@ -14,7 +14,7 @@ app.get('/', function(request, response) {
     var list = template.list(filelist);
     var html = template.HTML(title, list,
       `<h2>${title}</h2>${description}`,
-      `<a href="/create">create</a>`
+      `<a href="/create">create</a>` 
     );
     response.send(html);
   });
