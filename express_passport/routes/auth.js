@@ -41,7 +41,7 @@ router.post('/login_process', function (request, response) {
     response.send('Who?');
   }
 });
-*/
+*/ 
 
 router.get('/logout', function (request, response) {
   request.session.destroy(function(err){
