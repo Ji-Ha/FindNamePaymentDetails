@@ -6,19 +6,23 @@
 </head>
 <body>
     <label>User name <input type="text"></label>
-    <em class="message"></em>
+    <em class = "message"></em>
     <script>
-        const input = document.querySelector('input[type=text]');
-        const msg = document.querySelector('.message');
+    const MIN_USER_NAME_LENGTH = 3;
+    const input = document.querySelector('input[type=text]');
+    const msg = document.querySelector('.message');
 
+    function checkUserNameLength(n) {
+        if(input.value.length < n){
+            msg.innerHTML = '이름이 ' + n + '자 이상이어야 합니다.';
+        } else {
+            msg.innerHTML = '';
+        }
+    }
 
-        input.addEventListener('blur', function(){
-            if(input.value.length < 2){
-                msg.innerHTML = '이름은 2글자 이상이어야 합니다.';
-            }else{
-                msg.innerHTML = '';
-            }
-        });
+    input.addEventListener('blur', function(){
+        checkUserNameLength(MIN_USER_NAME_LENGTH);
+    });
     </script>
 </body>
 </html>
