@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <label>User name <input type="text"></label>
+    <em class="message"></em>
+    <script>
+        const input = document.querySelector('input[type=text]');
+        const msg = document.querySelector('.message');
+
+
+        input.addEventListener('blur', function(){
+            if(input.value.length < 2){
+                msg.innerHTML = '이름은 2글자 이상이어야 합니다.';
+            }else{
+                msg.innerHTML = '';
+            }
+        });
+    </script>
+</body>
+</html>
