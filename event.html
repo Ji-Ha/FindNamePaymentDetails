@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--이벤트 핸들러 등록의 3종류-->
+    <!--인라인 핸들러 방식-->
+    <button onclick="inlineHandler()">Click Inline</button>
+    <!--이벤트 핸들러 프로퍼티 방식-->
+    <button class="btn">Click property</button>
+    <!--addEventListener 메소드 방식-->
+    <script>
+
+        addEventListener('click', function(){
+            alert('eventListener 방식입니다.');
+        });
+
+        const btn = document.querySelector('.btn');
+
+        btn.onclick = function(){
+            alert('하나의 이벤트 핸들러만을 바인당할 수 있답니다.');
+        };
+
+        btn.addEventListener('click', function(){
+            alert('2 Button clicked 1');
+        });
+
+        btn.addEventListener('click', function(){
+            alert('2 Button clicked 2');
+        });
+
+        
+        function inlineHandler(){
+            alert('inline handler 방식 입니다.');
+        }
+    </script>
+</body>
+</html>

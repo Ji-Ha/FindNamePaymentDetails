@@ -21,7 +21,11 @@ app.get('*', function (request, response, next) {
   });
 });
 
-
+app.post('/login', 
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+  }));
 
 app.use('/', indexRouter);
 app.use('/topic', topicRouter);
