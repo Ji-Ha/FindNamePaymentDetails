@@ -8,7 +8,7 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect('mongodb+srv://xodhkd36:9872@cluster0.0a6bc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://@cluster0.0a6bc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
 var db = mongoose.connection;
 db.once('open', function(){
