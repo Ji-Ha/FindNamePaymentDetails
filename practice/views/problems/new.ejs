@@ -8,20 +8,20 @@
   <body>
     <%- include('../partials/nav') %>
 
-    <div class="contact contact-new">
+    <div class="problem problem-new">
       <h2>New</h2>
-      <form class="contact-form" action="/contacts" method="post">
+      <form class="problem-form" action="/problems" method="post">
         <div>
           <label for="name">Name</label>
           <input type="text" id="name" name="name" value="">
         </div>
         <div>
-          <label for="email">Email</label>
-          <input type="text" id="email" name="email" value="">
+          <label for="contents">contents</label>
+          <input type="text" id="contents" name="contents" value="">
         </div>
         <div>
-          <label for="phone">Phone</label>
-          <input type="text" id="phone" name="phone" value="">
+          <label for="answer">Answer</label>
+          <input type="text" id="answer" name="answer" value="">
         </div>
         <div>
           <button type="submit">Submit</button>

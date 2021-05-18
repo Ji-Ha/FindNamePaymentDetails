@@ -8,12 +8,12 @@
   <body>
     <%- include('../partials/nav') %> <!-- 2 -->
 
-    <div class="contact contact-index">
+    <div class="problem problem-index">
       <h2>Index</h2>
       <ul>
-        <% contacts.forEach(function(contact) { %> <!-- 3 -->
+        <% problems.forEach(function(problem) { %> <!-- 3 -->
           <li>
-            <%= contact.name %>
+            <%= problem.name %>
           </li>
         <% }) %>
       </ul>

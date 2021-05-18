@@ -24,36 +24,37 @@ app.use(bodyParser.json()); // 2
 app.use(bodyParser.urlencoded({extended:true})); // 3
 
 // DB schema // 4
-var contactSchema = mongoose.Schema({
+var problemSchema = mongoose.Schema({
   name:{type:String, required:true, unique:true},
-  email:{type:String},
-  phone:{type:String}
+  content:{type:String},
+  answer:{type:String}
 });
-var Problem = mongoose.model('contact', contactSchema); // 5
+var Problem = mongoose.model('problem', problemSchema); // 5
 
 // Routes
 // Home // 6
 app.get('/', function(req, res){
-  res.redirect('/contacts');
+  res.redirect('/problems');
 });
-// Contacts - Index // 7
-app.get('/contacts', function(req, res){
-  Problem.find({}, function(err, contacts){
+
+app.get('/problems', function(req, res){
+  Problem.find({}, function(err, problems){
     if(err) return res.json(err);
-    res.render('contacts/index', {contacts:contacts});
+    res.render('problems/index', {problems:problems});
   });
 });
-// Contacts - New // 8
-app.get('/contacts/new', function(req, res){
-  res.render('contacts/new');
+
+app.get('/problems/new', function(req, res){
+  res.render('problems/new');
 });
-// Contacts - create // 9
-app.post('/contacts', function(req, res){
-  Problem.create(req.body, function(err, contact){
+
+app.post('/problems', function(req, res){
+  Problem.create(req.body, function(err, problem){
     if(err) return res.json(err);
-    res.redirect('/contacts');
+    res.redirect('/problems');
   });
 });
+
 var port = 3000;
 
 app.listen(port, function(){
