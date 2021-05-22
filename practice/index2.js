@@ -10,7 +10,6 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.connect('mongodb+srv://xodhkd36:9872@cluster0.0a6bc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-
 var db = mongoose.connection;
 db.once('open', function(){
   console.log('DB connected');
@@ -19,37 +18,38 @@ db.on('error', function(err){
   console.log('DB ERROR : ', err);
 });
 
+// Other settings
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname+'/public'));
-app.use(bodyParser.json()); // 2
-app.use(bodyParser.urlencoded({extended:true})); // 3
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride('_method'))
 
-// DB schema // 4
+// DB schema
 var problemSchema = mongoose.Schema({
   name:{type:String, required:true, unique:true},
-  content:{type:String},
-  answer:{type:String}
+  email:{type:String},
+  phone:{type:String}
 });
-var Problem = mongoose.model('problem', problemSchema); // 5
+var Problem = mongoose.model('problem', problemSchema);
 
 // Routes
-// Home // 6
+// Home
 app.get('/', function(req, res){
   res.redirect('/problems');
 });
-
+// Contacts - Index
 app.get('/problems', function(req, res){
   Problem.find({}, function(err, problems){
     if(err) return res.json(err);
     res.render('problems/index', {problems:problems});
   });
 });
-
+// Contacts - New
 app.get('/problems/new', function(req, res){
   res.render('problems/new');
 });
-
+// Contacts - create
 app.post('/problems', function(req, res){
   Problem.create(req.body, function(err, problem){
     if(err) return res.json(err);
@@ -57,36 +57,8 @@ app.post('/problems', function(req, res){
   });
 });
 
-app.get('/problems/:id', function(req, res){
-  Problem.findOne({_id:req.params.id}, function(err, problem){
-    if(err) return res.json(err);
-    res.render('problems/show', {problem:problem});
-  });
-});
-
-app.get('/problems/:id/edit', function(req, res){
-  Problem.findOne({_id:req.params.id}, req.body, function(err, problem){
-    if(err) return res.json(err);
-    res.render('problems/edit', {problem:problem});
-  });
-});
-
-app.put('/problems/:id', function(req, res){
-  Problem.findOneAndUpdate({_id : req.params.id}, req.body, function(err, problem){
-    if(err) return res.json(err);
-    res.redirect('/problems/' + req.params.id);
-  });
-});
-
-app.delete('/problems/:id', function(req, res){
-  Problem.deleteOne({_id:req.params.id}, function(err){
-    if(err) return res.json(err);
-    res.redirect('/problems');
-  });
-});
-
+// Port setting
 var port = 3000;
-
 app.listen(port, function(){
-    console.log('server on! http://localhost:' + port);
+  console.log('server on! http://localhost:'+port);
 });

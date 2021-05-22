@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class = "problem problem-edit">
+        <h2>Edit</h2>
+        <form class = "problem-form" action="/problems/<%= problem._id %>?_method=put" method="post">
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id = "name" name = "name" value="<%= problem.name %>">
+            </div>
+            <div>
+                <label for="content">Content</label>
+                <input type="text" id = "content" name = "content" value="<%= problem.content %>">
+            </div>
+            <div>
+                <label for="answer">Answer</label>
+                <input type="text" id = "answer" name = "answer" value="<%= problem.answer %>">
+            </div>
+            <div>
+                <button type = "submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -13,7 +13,7 @@
       <ul>
         <% problems.forEach(function(problem) { %> <!-- 3 -->
           <li>
-            <%= problem.name %>
+            <a href="/problems/<%=problem._id %>"><%= problem.name %></a> 
           </li>
         <% }) %>
       </ul>
